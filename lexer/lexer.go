@@ -15,8 +15,8 @@ func New(input string) *Lexer {
 	return l
 }
 
-func (l *Lexer) NextToken() token.Token {
-	var tok token.Token
+func (l *Lexer) NextToken() token.ApeToken {
+	var tok token.ApeToken
 
 	l.skipWhitespace()
 
@@ -26,7 +26,7 @@ func (l *Lexer) NextToken() token.Token {
 			ch := l.ch
 			l.readChar()
 			literal := string(ch) + string(l.ch)
-			tok = token.Token{Type: token.EQ, Literal: literal}
+			tok = token.ApeToken{Type: token.EQ, Literal: literal}
 		} else {
 			tok = newToken(token.ASSIGN, l.ch)
 		}
@@ -36,7 +36,7 @@ func (l *Lexer) NextToken() token.Token {
 			ch := l.ch
 			l.readChar()
 			literal := string(ch) + string(l.ch)
-			tok = token.Token{Type: token.NOT_EQ, Literal: literal}
+			tok = token.ApeToken{Type: token.NOT_EQ, Literal: literal}
 		} else {
 			tok = newToken(token.BANG, l.ch)
 		}
@@ -119,8 +119,8 @@ func (l *Lexer) skipWhitespace() {
 	}
 }
 
-func newToken(tokenType token.TokenType, ch byte) token.Token {
-	return token.Token{Type: tokenType, Literal: string(ch)}
+func newToken(tokenType token.TokenType, ch byte) token.ApeToken {
+	return token.ApeToken{Type: tokenType, Literal: string(ch)}
 }
 
 func (l *Lexer) readChar() {

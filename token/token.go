@@ -2,7 +2,7 @@ package token
 
 type TokenType string
 
-type Token struct {
+type ApeToken struct {
 	Type    TokenType
 	Literal string
 }
